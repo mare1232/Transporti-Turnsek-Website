@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turnšek Transport - prevozi po Evropi in Aziji od 1994</title>
+<meta name="description" content="Družinsko prevozniško podjetje Turnšek Transport od leta 1994 prevaža zahtevno blago po EU, državah nekdanje Jugoslavije ter delih Evrope in Azije.">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;background:#FBFBFD}
+  body{margin:0;background:#FBFBFD;color:#1D1D1F;font-size:17px;line-height:1.55;letter-spacing:-0.011em;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,p{margin:0}
+  a{color:#0058CC;text-decoration:none}
+  a:hover{color:#00429B}
+  img,svg,canvas{display:block;max-width:100%}
+  input,textarea,button{font-family:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #0058CC;outline-offset:3px}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  }
+</style>
+<link rel="icon" href="assets/logo-glava.png">
+<script src="i18n.js"></script>
+<script src="land-data.js"></script>
+<script src="map.js" defer></script>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;background:rgba(251,251,253,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)">
+  <div style="max-width:1180px;margin:0 auto;padding:14px 34px;display:flex;align-items:center;gap:30px">
+    <a href="#top" aria-label="Turnšek Transport - domov" style="display:flex;align-items:center;flex:none">
+      <!-- LOGOTIP (glava): zamenljiva datoteka assets/logo-glava.png -->
+      <img src="assets/logo-glava.png" alt="transporti TURNŠEK" style="height:32px;width:auto">
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="flex:1;display:flex;gap:26px;font-size:14px">
+        <a href="#storitve" style="color:#6E6E73;white-space:nowrap;transition:color .25s cubic-bezier(.16,1,.3,1)" style-hover="color:#1D1D1F">Storitve</a>
+        <a href="#vozni-park" style="color:#6E6E73;white-space:nowrap;transition:color .25s cubic-bezier(.16,1,.3,1)" style-hover="color:#1D1D1F">Vozni park</a>
+        <a href="#destinacije" style="color:#6E6E73;white-space:nowrap;transition:color .25s cubic-bezier(.16,1,.3,1)" style-hover="color:#1D1D1F">Destinacije</a>
+        <a href="#o-podjetju" style="color:#6E6E73;white-space:nowrap;transition:color .25s cubic-bezier(.16,1,.3,1)" style-hover="color:#1D1D1F">O podjetju</a>
+        <a href="#lokacije" style="color:#6E6E73;white-space:nowrap;transition:color .25s cubic-bezier(.16,1,.3,1)" style-hover="color:#1D1D1F">Lokacije</a>
+      </nav>
+      <a href="tel:+38640213620" style="font-size:14px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">+386 40 213 620</a>
+      <div role="group" aria-label="Jezik" style="display:flex;gap:2px;background:#ECEDF0;padding:3px;border-radius:999px;corner-shape:squircle;flex:none">
+        <button type="button" onClick="{{ setSl }}" style="{{ slStyle }}">SL</button>
+        <button type="button" onClick="{{ setEn }}" style="{{ enStyle }}">EN</button>
+        <button type="button" onClick="{{ setDe }}" style="{{ deStyle }}">DE</button>
+      </div>
+      <a href="kontakt.html" style="background:#0058CC;color:#fff;padding:9px 20px;font-size:14px;font-weight:500;white-space:nowrap;border-radius:999px;corner-shape:squircle;transition:background .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)" style-hover="background:#00429B;transform:scale(1.03);color:#fff">Povpraševanje</a>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;gap:10px">
+        <div role="group" aria-label="Jezik" style="display:flex;gap:2px;background:#ECEDF0;padding:3px;border-radius:999px;corner-shape:squircle;flex:none">
+          <button type="button" onClick="{{ setSl }}" style="{{ slStyle }}">SL</button>
+          <button type="button" onClick="{{ setEn }}" style="{{ enStyle }}">EN</button>
+          <button type="button" onClick="{{ setDe }}" style="{{ deStyle }}">DE</button>
+        </div>
+        <a href="tel:+38640213620" aria-label="Pokliči +386 40 213 620" style="background:#0058CC;color:#fff;padding:9px 18px;font-size:14px;font-weight:500;border-radius:999px;corner-shape:squircle">Pokliči</a>
+        <button type="button" aria-label="Meni" aria-expanded="{{ navOpenAttr }}" onClick="{{ toggleNav }}" style="background:none;border:none;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#1D1D1F;padding:0">
+          <svg width="20" height="16" viewBox="0 0 20 16" fill="none" aria-hidden="true"><path d="M0 1H20M0 8H20M0 15H20" stroke="currentColor" stroke-width="1.6"></path></svg>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+    <nav style="display:flex;flex-direction:column;gap:18px;padding:8px 34px 28px;background:#FBFBFD;border-top:1px solid #E6E6EA;font-size:17px">
+      <a href="#storitve" onClick="{{ closeNav }}" style="color:#1D1D1F">Storitve</a>
+      <a href="#vozni-park" onClick="{{ closeNav }}" style="color:#1D1D1F">Vozni park</a>
+      <a href="#destinacije" onClick="{{ closeNav }}" style="color:#1D1D1F">Destinacije</a>
+      <a href="#o-podjetju" onClick="{{ closeNav }}" style="color:#1D1D1F">O podjetju</a>
+      <a href="#lokacije" onClick="{{ closeNav }}" style="color:#1D1D1F">Lokacije</a>
+      <a href="kontakt.html" style="color:#0058CC;font-weight:500">Povpraševanje</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main id="top" style="display:block">
+
+  <section style="position:relative;overflow:hidden;background:#0A1424;color:#fff;min-height:min(880px,calc(100svh - 62px));display:flex;flex-direction:column;justify-content:center;padding:clamp(55px,8vh,96px) 34px 0;text-align:center">
+    <div aria-hidden="true" style="position:absolute;inset:-6% 0;z-index:0;opacity:0.85;display:flex;align-items:center;justify-content:center;pointer-events:none;-webkit-mask-image:radial-gradient(125% 95% at 50% 45%,#000 44%,transparent 84%);mask-image:radial-gradient(125% 95% at 50% 45%,#000 44%,transparent 84%)">
+      <tur-map theme="dark" accent="#3B8BFF" animate="{{ animateAttr }}" style="display:block;width:100%;max-width:1500px"></tur-map>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:50%;top:42%;width:94%;height:82%;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(10,20,36,.97),rgba(10,20,36,.78) 48%,rgba(10,20,36,0));z-index:1;pointer-events:none"></div>
+    <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%">
+      <p style="font-size:13px;font-weight:600;color:#7FB0FF;letter-spacing:0.06em;text-transform:uppercase">Družinsko podjetje od 1994</p>
+      <h1 style="font-size:clamp(46px,8vw,112px);font-weight:600;letter-spacing:-0.035em;line-height:0.98;max-width:14ch;margin:21px auto 0;text-wrap:balance;color:#fff">Prevozi, ki držijo besedo.</h1>
+      <p style="font-size:clamp(17px,2vw,21px);color:#AFC2DB;max-width:42ch;margin:21px auto 0;text-wrap:pretty">Zahtevno blago po celi Evropski uniji, državah bivše Jugoslavije in delih Azije. Zavarovano, sledljivo in na cilju ob dogovorjenem času.</p>
+      <div style="display:flex;justify-content:center;align-items:center;gap:21px;margin-top:34px;flex-wrap:wrap">
+        <a href="kontakt.html" style="background:#0058CC;color:#fff;padding:15px 30px;font-size:16px;font-weight:500;border-radius:999px;corner-shape:squircle;transition:background .3s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1)" style-hover="background:#00429B;color:#fff;transform:translateY(-2px) scale(1.02);box-shadow:0 16px 34px rgba(0,88,204,.3)">Oddaj povpraševanje</a>
+        <a href="#storitve" style="font-size:16px;font-weight:500;color:#8FB6F0;display:inline-flex;align-items:center;gap:5px;transition:gap .3s cubic-bezier(.16,1,.3,1)" style-hover="gap:10px;color:#fff">Naše storitve <span aria-hidden="true">›</span></a>
+      </div>
+
+      <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 28px;margin-top:34px;font-size:13px;color:#8DA2BF">
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:9px;height:9px;background:#fff;border-radius:50%"></span>Rogaška Slatina, izhodišče</span>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:9px;height:9px;background:#3B8BFF;border-radius:50%"></span>Države, kamor redno vozimo</span>
+      </div>
+
+      <div data-counters style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-width:900px;margin:clamp(44px,7vh,76px) auto 0;border-top:1px solid rgba(255,255,255,.16);padding:30px 0 8px">
+        <div style="text-align:center;padding:8px 21px">
+          <div data-count="30" data-suffix="+" style="font-size:clamp(34px,4.6vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums;color:#fff">30+</div>
+          <div style="font-size:13.5px;color:#8DA2BF;margin-top:4px">let izkušenj</div>
+        </div>
+        <div style="text-align:center;padding:8px 21px">
+          <div data-count="150" data-suffix="+" style="font-size:clamp(34px,4.6vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums;color:#fff">150+</div>
+          <div style="font-size:13.5px;color:#8DA2BF;margin-top:4px">strank</div>
+        </div>
+        <div style="text-align:center;padding:8px 21px">
+          <div data-count="26" data-suffix="" style="font-size:clamp(34px,4.6vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums;color:#fff">26</div>
+          <div style="font-size:13.5px;color:#8DA2BF;margin-top:4px">držav</div>
+        </div>
+        <div style="text-align:center;padding:8px 21px">
+          <div data-count="12" data-suffix="" style="font-size:clamp(34px,4.6vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums;color:#fff">12</div>
+          <div style="font-size:13.5px;color:#8DA2BF;margin-top:4px">tovornih vozil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FBFBFD;padding:144px 34px">
+    <div style="max-width:1000px;margin:0 auto">
+      <p data-reveal style="font-size:14px;font-weight:600;color:#0058CC">Naš moto</p>
+      <h2 data-reveal style="font-size:clamp(30px,4.2vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.14;margin-top:21px;text-wrap:pretty">Pravočasnost in spoštovanje dogovorjenih rokov. Fleksibilnost v nujnih situacijah. Zanesljivost in strokovnost pri ravnanju z zahtevnim blagom.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:34px;margin-top:55px;padding-top:34px;border-top:1px solid #E6E6EA">
+        <div data-reveal>
+          <h3 style="font-size:17px;font-weight:600">Pravočasnost</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:6px">Dogovorjen rok je rok, ne ocena.</p>
+        </div>
+        <div data-reveal>
+          <h3 style="font-size:17px;font-weight:600">Fleksibilnost</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:6px">Prilagajamo se nujnim situacijam.</p>
+        </div>
+        <div data-reveal>
+          <h3 style="font-size:17px;font-weight:600">Strokovnost</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:6px">Specializirani za zahtevno blago.</p>
+        </div>
+        <div data-reveal>
+          <h3 style="font-size:17px;font-weight:600">Izkušnje</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:6px">Več kot 30 let na evropskih cestah.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="storitve" style="padding:144px 34px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="max-width:640px;margin:0 auto 89px;text-align:center">
+        <h2 style="font-size:clamp(36px,5vw,71px);font-weight:600;letter-spacing:-0.03em;line-height:1.05">Zgrajeno na zaupanju</h2>
+        <p style="font-size:18px;color:#6E6E73;margin-top:13px">Tri stvari, na katere se naročniki najpogosteje zanašajo.</p>
+      </div>
+
+      <div data-reveal data-depth="0.06" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:55px;align-items:center;margin-bottom:89px">
+        <div>
+          <span style="display:inline-block;font-size:12.5px;font-weight:600;color:#0058CC;background:#E8F0FC;padding:5px 12px;border-radius:999px;corner-shape:squircle">01 / Zavarovanje</span>
+          <h3 style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.028em;line-height:1.08;margin-top:16px">Zavarovan tovor, ne glede na pot.</h3>
+          <p style="font-size:18px;color:#6E6E73;margin-top:21px;max-width:42ch;text-wrap:pretty">Za vsa vozila imamo urejeno zavarovanje tovora - v primeru prometne nesreče, požara ali eksplozije, višje sile, elementarnih nesreč ter vlomne tatvine ali tatvine celega vozila s tovorom.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:21px;font-size:14px;color:#6E6E73">
+            <span style="border:1px solid #E6E6EA;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Prometna nesreča</span>
+            <span style="border:1px solid #E6E6EA;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Požar in eksplozija</span>
+            <span style="border:1px solid #E6E6EA;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Višja sila</span>
+            <span style="border:1px solid #E6E6EA;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Elementarne nesreče</span>
+            <span style="border:1px solid #E6E6EA;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Tatvina</span>
+          </div>
+        </div>
+        <div data-tilt style="position:relative;aspect-ratio:1.618/1;border-radius:28px;corner-shape:squircle;overflow:hidden;background:linear-gradient(150deg,#0058CC 0%,#0B3F8F 100%);box-shadow:0 1px 2px rgba(0,0,0,.04),0 28px 56px rgba(0,60,140,.22);display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <!-- ZAČASNI VIZUAL - nadomesti s fotografijo voznega parka -->
+          <div style="position:relative;transform:translateZ(38px);text-align:center;padding:21px;color:#fff">
+            <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.1" aria-hidden="true" style="margin:0 auto"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6l-8-3Z"></path><path d="m8.6 12 2.4 2.4 4.4-4.6"></path></svg>
+            <p style="font:500 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:rgba(255,255,255,.82);margin-top:16px">fotografija: zavarovan tovor</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal data-depth="0.06" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:55px;align-items:center;margin-bottom:89px">
+        <div data-tilt style="position:relative;aspect-ratio:1.618/1;border-radius:28px;corner-shape:squircle;overflow:hidden;background:#F1F5FA;border:1px solid #E3EAF3;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <div style="position:relative;transform:translateZ(38px);text-align:center;padding:21px">
+            <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="#0058CC" stroke-width="1.1" aria-hidden="true" style="margin:0 auto"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
+            <p style="font:500 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#6E6E73;margin-top:16px">fotografija: sledenje pošiljki</p>
+          </div>
+        </div>
+        <div>
+          <span style="display:inline-block;font-size:12.5px;font-weight:600;color:#0058CC;background:#E8F0FC;padding:5px 12px;border-radius:999px;corner-shape:squircle">02 / Sledljivost</span>
+          <h3 style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.028em;line-height:1.08;margin-top:16px">Vedno veste, kje je blago.</h3>
+          <p style="font-size:18px;color:#6E6E73;margin-top:21px;max-width:42ch;text-wrap:pretty">Poslovnim partnerjem zagotavljamo sledljivost blaga skozi celoten proces - naročnik lahko v vsakem trenutku izve, kje se pošiljka nahaja.</p>
+        </div>
+      </div>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:21px">
+        <div data-tilt style="background:#fff;padding:34px;border-radius:24px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <span style="display:block;font-size:12.5px;font-weight:600;color:#0058CC;margin-bottom:13px">03 / Prilagodljivost</span>
+          <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em">Po vaših potrebah</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:8px;text-wrap:pretty">Transportne storitve vseh vrst opravimo kvalitetno, pravočasno in v skladu z vašimi individualnimi željami.</p>
+        </div>
+        <div data-tilt style="background:#fff;padding:34px;border-radius:24px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <span style="display:block;font-size:12.5px;font-weight:600;color:#0058CC;margin-bottom:13px">04 / Hitrost</span>
+          <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em">Hitra izvedba</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:8px;text-wrap:pretty">Cilj so hitre in kakovostne storitve prevozov zahtevnega blaga, tudi ob kratkih rokih.</p>
+        </div>
+        <div data-tilt style="background:#fff;padding:34px;border-radius:24px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <span style="display:block;font-size:12.5px;font-weight:600;color:#0058CC;margin-bottom:13px">05 / Izkušnje</span>
+          <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em">Od leta 1994</h3>
+          <p style="font-size:15px;color:#6E6E73;margin-top:8px;text-wrap:pretty">Prevoze v mednarodnem cestnem prometu uspešno opravljamo že več kot tri desetletja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vozni-park" style="padding:144px 34px;background:#F0F5FC">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal data-depth="0.05" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:55px;align-items:center">
+        <div>
+          <h2 style="font-size:clamp(36px,5vw,71px);font-weight:600;letter-spacing:-0.03em;line-height:1.05">Vozni park</h2>
+          <p style="font-size:18px;color:#6E6E73;margin-top:21px;max-width:44ch;text-wrap:pretty">Vozni park neprestano posodabljamo, obnavljamo in širimo. Vsa vozila ustrezajo ekološkim standardom in so opremljena z nadzorom temperature.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:21px;margin-top:34px;padding-top:21px;border-top:1px solid #DCE5F0">
+            <div>
+              <div style="font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1">12</div>
+              <div style="font-size:14px;color:#6E6E73;margin-top:2px">tovornih vozil s cerado</div>
+            </div>
+            <div>
+              <div style="font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1">4</div>
+              <div style="font-size:14px;color:#6E6E73;margin-top:2px">polpriklopniki</div>
+            </div>
+            <div>
+              <div style="font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1">8</div>
+              <div style="font-size:14px;color:#6E6E73;margin-top:2px">volumenska vozila</div>
+            </div>
+          </div>
+          <p style="font-size:14px;color:#6E6E73;margin-top:26px;display:flex;gap:10px;flex-wrap:wrap">
+            <span style="border:1px solid #D7E0EC;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Mercedes</span>
+            <span style="border:1px solid #D7E0EC;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Volvo</span>
+            <span style="border:1px solid #D7E0EC;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Nadzor temperature</span>
+            <span style="border:1px solid #D7E0EC;background:#fff;padding:6px 13px;border-radius:999px;corner-shape:squircle;white-space:nowrap">Ekološki standardi</span>
+          </p>
+        </div>
+        <div data-tilt style="position:relative;aspect-ratio:1.4/1;border-radius:28px;corner-shape:squircle;overflow:hidden;background:linear-gradient(150deg,#12284A 0%,#0058CC 100%);box-shadow:0 1px 2px rgba(0,0,0,.04),0 28px 56px rgba(16,42,80,.2);display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <!-- ZAČASNI VIZUAL - nadomesti s fotografijo voznega parka -->
+          <div style="position:relative;transform:translateZ(38px);text-align:center;padding:21px;color:#fff">
+            <svg width="110" height="110" viewBox="0 0 32 20" fill="none" stroke="#fff" stroke-width="0.9" aria-hidden="true" style="margin:0 auto"><path d="M1 3.5h17v10H1z"></path><path d="M18 6.5h6l4 4v3h-10z"></path><circle cx="8" cy="15.5" r="2.4"></circle><circle cx="24" cy="15.5" r="2.4"></circle></svg>
+            <p style="font:500 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:rgba(255,255,255,.82);margin-top:16px">fotografija: vozni park</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="destinacije" style="padding:144px 34px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="max-width:680px;margin:0 auto 55px;text-align:center">
+        <h2 style="font-size:clamp(36px,5vw,71px);font-weight:600;letter-spacing:-0.03em;line-height:1.05">Kam vozimo</h2>
+        <p style="font-size:18px;color:#6E6E73;margin-top:13px;text-wrap:pretty">Prevoze opravljamo znotraj Evropske unije, v državah bivše Jugoslavije ter v ostalih evropskih in nekaterih azijskih državah. Zaupa nam več kot 150 strank iz 26 držav.</p>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:21px;max-width:1000px;margin:0 auto">
+        <div style="background:#fff;border:1px solid #E6E6EA;padding:28px;border-radius:24px;corner-shape:squircle">
+          <h3 style="font-size:14px;font-weight:600;color:#0058CC">Evropska unija</h3>
+          <p style="font-size:15.5px;color:#1D1D1F;margin-top:12px;line-height:1.75;text-wrap:pretty">Slovenija, Italija, Avstrija, Švica, Madžarska, Francija, Nemčija, Grčija, Španija, Portugalska, Luksemburg, Nizozemska, Belgija, Velika Britanija, Poljska, Češka, Litva, Latvija, Estonija</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E6E6EA;padding:28px;border-radius:24px;corner-shape:squircle">
+          <h3 style="font-size:14px;font-weight:600;color:#0058CC">Bivša Jugoslavija</h3>
+          <p style="font-size:15.5px;color:#1D1D1F;margin-top:12px;line-height:1.75;text-wrap:pretty">Bosna in Hercegovina, Srbija, Črna gora, Kosovo</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E6E6EA;padding:28px;border-radius:24px;corner-shape:squircle">
+          <h3 style="font-size:14px;font-weight:600;color:#0058CC">Ostala Evropa in Azija</h3>
+          <p style="font-size:15.5px;color:#1D1D1F;margin-top:12px;line-height:1.75;text-wrap:pretty">Rusija, Ukrajina, Gruzija, Armenija, Kazahstan, Kirgizistan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-podjetju" style="padding:144px 34px;background:#F0F5FC">
+    <div style="max-width:1100px;margin:0 auto">
+      <div data-reveal style="max-width:640px;margin:0 auto 76px;text-align:center">
+        <h2 style="font-size:clamp(36px,5vw,71px);font-weight:600;letter-spacing:-0.03em;line-height:1.05">Kako smo začeli</h2>
+        <p style="font-size:18px;color:#6E6E73;margin-top:13px">Od enega kamiona do prevozov po vsej Evropi.</p>
+      </div>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:34px;align-items:start">
+        <div>
+          <div style="font-size:clamp(71px,11vw,120px);font-weight:700;letter-spacing:-0.045em;line-height:0.9;color:#0058CC">1994</div>
+          <h3 style="font-size:24px;font-weight:600;letter-spacing:-0.02em;margin-top:21px">En kamion, ena vožnja v Rusijo</h3>
+          <p style="font-size:17px;color:#6E6E73;margin-top:12px;text-wrap:pretty">Začeli smo z enim kamionom, ki ga je direktor Franc sam vozil v Rusijo. Družinsko podjetje od prvega dne opravlja prevoze po Sloveniji in v tujini.</p>
+        </div>
+        <div style="display:grid;gap:21px">
+          <div data-tilt style="background:#fff;padding:30px;border-radius:24px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+            <span style="display:block;color:#0058CC;font-weight:600;font-size:13px;margin-bottom:10px">Rast</span>
+            <h3 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Potrebe trga so narasle</h3>
+            <p style="font-size:15px;color:#6E6E73;margin-top:8px;text-wrap:pretty">S povpraševanjem smo začeli širiti vozni park in ekipo voznikov ter prevzemati zahtevnejše relacije.</p>
+          </div>
+          <div data-tilt style="background:#fff;padding:30px;border-radius:24px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+            <span style="display:block;color:#0058CC;font-weight:600;font-size:13px;margin-bottom:10px">Danes</span>
+            <h3 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Več kot 150 strank iz 26 držav</h3>
+            <p style="font-size:15px;color:#6E6E73;margin-top:8px;text-wrap:pretty">Dvanajst vozil, redne relacije po Evropi in Aziji ter dolgoletni partnerji, ki se vračajo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lokacije" style="padding:144px 34px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="max-width:640px;margin:0 auto 55px;text-align:center">
+        <h2 style="font-size:clamp(36px,5vw,71px);font-weight:600;letter-spacing:-0.03em;line-height:1.05">Kje nas najdete</h2>
+        <p style="font-size:18px;color:#6E6E73;margin-top:13px">Pisarna v Rogaški Slatini, parkirišče in mehanična delavnica v Slovenski Bistrici.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:21px">
+        <div data-reveal data-tilt style="background:#fff;padding:44px;border-radius:28px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 20px 44px rgba(0,0,0,.07);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <span style="display:block;font-size:13px;color:#0058CC;font-weight:600;margin-bottom:13px">Pisarna</span>
+          <h3 style="font-size:27px;font-weight:600;letter-spacing:-0.025em">Rogaška Slatina</h3>
+          <address style="font-style:normal;color:#6E6E73;font-size:15px;margin-top:8px;display:block">Kamence 10, 3250 Rogaška Slatina, Slovenija (EU)</address>
+          <p style="font-size:15px;color:#6E6E73;margin-top:10px">Pisarna: <a href="tel:+38638192741">+386 3 819 27 41</a></p>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kamence+10%2C+3250+Rogaška+Slatina" style="display:inline-flex;align-items:center;gap:5px;margin-top:21px;font-size:15px;font-weight:500;color:#0058CC;transition:gap .3s cubic-bezier(.16,1,.3,1)" style-hover="gap:10px">Odpri v zemljevidu <span aria-hidden="true">›</span></a>
+        </div>
+        <div data-reveal data-tilt style="background:#fff;padding:44px;border-radius:28px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 20px 44px rgba(0,0,0,.07);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)">
+          <span style="display:block;font-size:13px;color:#0058CC;font-weight:600;margin-bottom:13px">Parkirišče in mehanična delavnica</span>
+          <h3 style="font-size:27px;font-weight:600;letter-spacing:-0.025em">Slovenska Bistrica</h3>
+          <address style="font-style:normal;color:#6E6E73;font-size:15px;margin-top:8px;display:block">Spodnja Nova vas 47, 2310 Slovenska Bistrica, Slovenija (EU)</address>
+          <p style="font-size:15px;color:#6E6E73;margin-top:10px">Mobitel: <a href="tel:+38640309929">+386 40 309 929</a></p>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spodnja+Nova+vas+47%2C+2310+Slovenska+Bistrica" style="display:inline-flex;align-items:center;gap:5px;margin-top:21px;font-size:15px;font-weight:500;color:#0058CC;transition:gap .3s cubic-bezier(.16,1,.3,1)" style-hover="gap:10px">Odpri v zemljevidu <span aria-hidden="true">›</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 34px 144px">
+    <div data-reveal style="max-width:1180px;margin:0 auto;background:#1D1D1F;color:#fff;padding:clamp(44px,6vw,89px);border-radius:32px;corner-shape:squircle;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:34px;align-items:center">
+      <div>
+        <h2 style="font-size:clamp(30px,4vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.06">Potrebujete ponudbo za prevoz?</h2>
+        <p style="font-size:17px;color:#A8A8AE;margin-top:13px;max-width:38ch;text-wrap:pretty">Pošljite relacijo in vrsto blaga ali nas preprosto pokličite - odgovorimo hitro.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+        <a href="tel:+38640213620" style="color:#fff;font-size:clamp(27px,3.2vw,38px);font-weight:600;letter-spacing:-0.025em" style-hover="color:#8FB6F0">+386 40 213 620</a>
+        <a href="kontakt.html" style="background:#0058CC;color:#fff;padding:15px 30px;font-size:16px;font-weight:500;border-radius:999px;corner-shape:squircle;transition:background .3s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)" style-hover="background:#2A7BE8;color:#fff;transform:translateY(-2px)">Oddaj povpraševanje</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="padding:55px 34px 34px;border-top:1px solid #E6E6EA">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:34px;padding-bottom:34px">
+      <!-- LOGOTIP (noga): zamenljiva datoteka assets/logo-noga.png -->
+      <img src="assets/logo-noga.png" alt="transporti TURNŠEK" style="height:88px;width:auto">
+      <div style="display:flex;gap:55px;flex-wrap:wrap">
+        <nav style="display:flex;flex-direction:column;gap:10px">
+          <a href="#storitve" style="font-size:13.5px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Storitve</a>
+          <a href="#vozni-park" style="font-size:13.5px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Vozni park</a>
+          <a href="#destinacije" style="font-size:13.5px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Destinacije</a>
+          <a href="#o-podjetju" style="font-size:13.5px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">O podjetju</a>
+          <a href="kontakt.html" style="font-size:13.5px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Povpraševanje</a>
+        </nav>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#6E6E73">
+          <a href="tel:+38640213620" style="color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Mobitel: +386 40 213 620</a>
+          <a href="tel:+38640309929" style="color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Mobitel: +386 40 309 929</a>
+          <a href="tel:+38638192741" style="color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Pisarna: +386 3 819 27 41</a>
+          <span style="white-space:nowrap">Faks: +386 3 819 27 40</span>
+          <a href="mailto:turnsek.franc@s5.net" style="color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">turnsek.franc@s5.net</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-top:21px;border-top:1px solid #E6E6EA;font-size:12.5px;color:#6E6E73">
+      <span>© 2026 Turnšek Transport. Vse pravice pridržane.</span>
+      <span>Kamence 10, 3250 Rogaška Slatina</span>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animateRoutes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Karta in animacije&quot;},&quot;tiltStrength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:7,&quot;min&quot;:0,&quot;max&quot;:14,&quot;step&quot;:1,&quot;unit&quot;:&quot;°&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Karta in animacije&quot;}}">
+class Component extends DCLogic {
+  state = { wide: true, navOpen: false, lang: 'sl' };
+
+  langStyle(code) {
+    const on = this.state.lang === code;
+    return 'border:none;cursor:pointer;font-size:12.5px;font-weight:600;letter-spacing:0.02em;' +
+      'padding:5px 11px;border-radius:999px;corner-shape:squircle;transition:background .25s cubic-bezier(.16,1,.3,1),color .25s cubic-bezier(.16,1,.3,1);' +
+      (on ? 'background:#fff;color:#1D1D1F;box-shadow:0 1px 2px rgba(0,0,0,.12);' : 'background:transparent;color:#6E6E73;');
+  }
+
+  setLang(code) {
+    this.setState({ lang: code });
+    if (window.TurI18n) window.TurI18n.apply(code);
+  }
+
+  renderVals() {
+    return {
+      slStyle: this.langStyle('sl'),
+      enStyle: this.langStyle('en'),
+      deStyle: this.langStyle('de'),
+      setSl: () => this.setLang('sl'),
+      setEn: () => this.setLang('en'),
+      setDe: () => this.setLang('de'),
+      wide: this.state.wide,
+      narrow: !this.state.wide,
+      navOpen: !this.state.wide && this.state.navOpen,
+      navOpenAttr: this.state.navOpen ? 'true' : 'false',
+      toggleNav: () => this.setState((s) => ({ navOpen: !s.navOpen })),
+      closeNav: () => this.setState({ navOpen: false }),
+      animateAttr: (this.props.animateRoutes ?? true) ? '1' : '0'
+    };
+  }
+
+  componentDidMount() {
+    const root = document;
+    this._cleanups = [];
+
+    if (window.TurI18n) {
+      const saved = window.TurI18n.stored();
+      if (saved && saved !== 'sl') {
+        this.setState({ lang: saved });
+        window.TurI18n.apply(saved);
+      }
+    }
+
+    const mq = window.matchMedia('(min-width: 1040px)');
+    const sync = () => this.setState({ wide: mq.matches, navOpen: false });
+    sync();
+    mq.addEventListener('change', sync);
+    this._cleanups.push(() => mq.removeEventListener('change', sync));
+
+    /* mehko skrolanje do sekcij, z odmikom za lepljivo glavo */
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const onAnchor = (ev) => {
+      const a = ev.target.closest && ev.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const target = id ? document.getElementById(id) : document.body;
+      if (!target) return;
+      ev.preventDefault();
+      const header = document.querySelector('header');
+      const offset = (header ? header.getBoundingClientRect().height : 0) + 12;
+      const to = Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset);
+      if (reduced) { window.scrollTo(0, to); return; }
+      const from = window.scrollY;
+      const dist = to - from;
+      const dur = Math.min(1250, Math.max(520, Math.abs(dist) * 0.62));
+      const t0 = performance.now();
+      const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      let cancelled = false;
+      const stop = () => { cancelled = true; };
+      window.addEventListener('wheel', stop, { once: true, passive: true });
+      window.addEventListener('touchstart', stop, { once: true, passive: true });
+      const step = (now) => {
+        if (cancelled) return;
+        const p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, from + dist * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+        else if (id) history.replaceState(null, '', '#' + id);
+      };
+      requestAnimationFrame(step);
+    };
+    document.addEventListener('click', onAnchor);
+    this._cleanups.push(() => document.removeEventListener('click', onAnchor));
+
+    if (reduced) return;
+
+    /* stevilke se preštejejo ob prikazu */
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        const end = parseInt(en.target.dataset.count, 10);
+        const suffix = en.target.dataset.suffix || '';
+        const t0 = performance.now();
+        const run = (now) => {
+          const p = Math.min(1, (now - t0) / 1100);
+          const v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          en.target.textContent = v + (p === 1 ? suffix : '');
+          if (p < 1) requestAnimationFrame(run);
+        };
+        requestAnimationFrame(run);
+      });
+    }, { threshold: 0.6 });
+    root.querySelectorAll('[data-count]').forEach((el) => cio.observe(el));
+    this._cleanups.push(() => cio.disconnect());
+
+    /* reveal: 3D globina po Z-osi */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.style.opacity = '1';
+        en.target.style.transform = 'none';
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    root.querySelectorAll('[data-reveal]').forEach((el, i) => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 40) return;
+      el.style.perspective = '900px';
+      el.style.opacity = '0';
+      el.style.transform = 'translate3d(0,30px,-70px)';
+      el.style.transition = 'opacity .85s cubic-bezier(.16,1,.3,1) ' + (i % 3) * 0.07 +
+        's, transform .95s cubic-bezier(.16,1,.3,1) ' + (i % 3) * 0.07 + 's';
+      io.observe(el);
+    });
+    this._cleanups.push(() => io.disconnect());
+
+    /* parallax po Z-osi */
+    const depth = Array.from(root.querySelectorAll('[data-depth]'));
+    depth.forEach((el) => { el.style.willChange = 'transform'; });
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const vh = window.innerHeight;
+        depth.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const p = (r.top + r.height / 2 - vh / 2) / vh;
+          const k = parseFloat(el.dataset.depth) || 0.08;
+          el.style.transform = 'perspective(1200px) translate3d(0,' +
+            (-p * k * 110).toFixed(2) + 'px,' + (-Math.abs(p) * k * 160).toFixed(2) + 'px)';
+        });
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    this._cleanups.push(() => window.removeEventListener('scroll', onScroll));
+
+    /* tilt mikro-interakcija */
+    const strength = this.props.tiltStrength ?? 7;
+    root.querySelectorAll('[data-tilt]').forEach((el) => {
+      const move = (ev) => {
+        const r = el.getBoundingClientRect();
+        const x = (ev.clientX - r.left) / r.width - 0.5;
+        const y = (ev.clientY - r.top) / r.height - 0.5;
+        el.style.transition = 'transform .12s linear, box-shadow .5s cubic-bezier(.16,1,.3,1)';
+        el.style.transform = 'perspective(900px) rotateY(' + (x * strength).toFixed(2) +
+          'deg) rotateX(' + (-y * strength).toFixed(2) + 'deg) translateZ(10px)';
+      };
+      const out = () => {
+        el.style.transition = 'transform .9s cubic-bezier(.22,1.4,.36,1), box-shadow .5s cubic-bezier(.16,1,.3,1)';
+        el.style.transform = 'none';
+      };
+      el.addEventListener('pointermove', move);
+      el.addEventListener('pointerleave', out);
+      this._cleanups.push(() => {
+        el.removeEventListener('pointermove', move);
+        el.removeEventListener('pointerleave', out);
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    (this._cleanups || []).forEach((fn) => fn());
+  }
+}
+
+</script>
+</body>
+</html>

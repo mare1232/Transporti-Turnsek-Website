@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt in povpraševanje - Turnšek Transport</title>
+<meta name="description" content="Oddajte povpraševanje za prevoz ali nas pokličite. Turnšek Transport, Kamence 10, Rogaška Slatina.">
+<link rel="icon" href="assets/logo-glava.png">
+<style>
+  *{box-sizing:border-box}
+  html{background:#FBFBFD}
+  body{margin:0;background:#FBFBFD;color:#1D1D1F;font-size:17px;line-height:1.55;letter-spacing:-0.011em;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  h1,h2,h3,p{margin:0}
+  a{color:#0058CC;text-decoration:none}
+  a:hover{color:#00429B}
+  img{display:block;max-width:100%}
+  input,textarea,button,select{font-family:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #0058CC;outline-offset:3px}
+  @media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important}}
+</style>
+<script src="i18n.js"></script>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;background:rgba(251,251,253,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)">
+  <div style="max-width:1180px;margin:0 auto;padding:14px 34px;display:flex;align-items:center;gap:24px">
+    <a href="index.html" aria-label="Turnšek Transport - domov" style="display:flex;align-items:center;flex:none">
+      <!-- LOGOTIP (glava): zamenljiva datoteka assets/logo-glava.png -->
+      <img src="assets/logo-glava.png" alt="transporti TURNŠEK" style="height:32px;width:auto">
+    </a>
+    <div style="flex:1"></div>
+    <a href="index.html" style="font-size:14px;color:#6E6E73;white-space:nowrap" style-hover="color:#1D1D1F">Nazaj na domov</a>
+    <div role="group" aria-label="Jezik" style="display:flex;gap:2px;background:#ECEDF0;padding:3px;border-radius:999px;corner-shape:squircle;flex:none">
+      <button type="button" onClick="{{ setSl }}" style="{{ slStyle }}">SL</button>
+      <button type="button" onClick="{{ setEn }}" style="{{ enStyle }}">EN</button>
+      <button type="button" onClick="{{ setDe }}" style="{{ deStyle }}">DE</button>
+    </div>
+    <a href="tel:+38640213620" style="background:#0058CC;color:#fff;padding:9px 20px;font-size:14px;font-weight:500;white-space:nowrap;border-radius:999px;corner-shape:squircle;transition:background .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)" style-hover="background:#00429B;transform:scale(1.03);color:#fff">Pokliči</a>
+  </div>
+</header>
+
+<main style="display:block;background:linear-gradient(180deg,#EDF3FB 0%,#FBFBFD 420px)">
+  <section style="padding:89px 34px 55px;text-align:center">
+    <p style="font-size:14px;font-weight:600;color:#0058CC">Povpraševanje</p>
+    <h1 style="font-size:clamp(38px,6vw,71px);font-weight:600;letter-spacing:-0.03em;line-height:1.04;margin-top:13px">Povejte nam, kaj vozimo.</h1>
+    <p style="font-size:18px;color:#6E6E73;max-width:46ch;margin:16px auto 0;text-wrap:pretty">Opišite relacijo in vrsto blaga. Odgovorimo z okvirno ponudbo, po potrebi pa vas pokličemo nazaj.</p>
+  </section>
+
+  <section style="padding:0 34px 89px">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:34px;align-items:start">
+
+      <form onSubmit="{{ onSubmit }}" style="background:#fff;padding:38px;border-radius:28px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 22px 48px rgba(0,0,0,.07);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
+        <div>
+          <label for="k-name" style="display:block;font-size:13px;color:#6E6E73;margin-bottom:7px">Ime in podjetje</label>
+          <input id="k-name" name="name" type="text" required style="width:100%;background:#FBFBFD;border:1px solid #E6E6EA;border-radius:14px;corner-shape:squircle;padding:14px 16px;font-size:15.5px;color:#1D1D1F;transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1)" style-focus="border-color:#0058CC;box-shadow:0 0 0 4px rgba(0,88,204,.12);outline:none">
+        </div>
+        <div>
+          <label for="k-email" style="display:block;font-size:13px;color:#6E6E73;margin-bottom:7px">E-pošta</label>
+          <input id="k-email" name="email" type="email" required style="width:100%;background:#FBFBFD;border:1px solid #E6E6EA;border-radius:14px;corner-shape:squircle;padding:14px 16px;font-size:15.5px;color:#1D1D1F;transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1)" style-focus="border-color:#0058CC;box-shadow:0 0 0 4px rgba(0,88,204,.12);outline:none">
+        </div>
+        <div>
+          <label for="k-phone" style="display:block;font-size:13px;color:#6E6E73;margin-bottom:7px">Telefon</label>
+          <input id="k-phone" name="phone" type="tel" style="width:100%;background:#FBFBFD;border:1px solid #E6E6EA;border-radius:14px;corner-shape:squircle;padding:14px 16px;font-size:15.5px;color:#1D1D1F;transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1)" style-focus="border-color:#0058CC;box-shadow:0 0 0 4px rgba(0,88,204,.12);outline:none">
+        </div>
+        <div>
+          <label for="k-route" style="display:block;font-size:13px;color:#6E6E73;margin-bottom:7px">Relacija (od - do)</label>
+          <input id="k-route" name="route" type="text" placeholder="npr. Rogaška Slatina - Berlin" style="width:100%;background:#FBFBFD;border:1px solid #E6E6EA;border-radius:14px;corner-shape:squircle;padding:14px 16px;font-size:15.5px;color:#1D1D1F;transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1)" style-focus="border-color:#0058CC;box-shadow:0 0 0 4px rgba(0,88,204,.12);outline:none">
+        </div>
+        <div style="grid-column:1/-1">
+          <label for="k-cargo" style="display:block;font-size:13px;color:#6E6E73;margin-bottom:7px">Vrsta blaga</label>
+          <input id="k-cargo" name="cargo" type="text" placeholder="npr. paletirano blago, 12 t" style="width:100%;background:#FBFBFD;border:1px solid #E6E6EA;border-radius:14px;corner-shape:squircle;padding:14px 16px;font-size:15.5px;color:#1D1D1F;transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1)" style-focus="border-color:#0058CC;box-shadow:0 0 0 4px rgba(0,88,204,.12);outline:none">
+        </div>
+        <div style="grid-column:1/-1">
+          <label for="k-message" style="display:block;font-size:13px;color:#6E6E73;margin-bottom:7px">Sporočilo</label>
+          <textarea id="k-message" name="message" placeholder="Teža, dimenzije, želen datum prevoza, posebne zahteve ..." style="width:100%;min-height:130px;resize:vertical;background:#FBFBFD;border:1px solid #E6E6EA;border-radius:14px;corner-shape:squircle;padding:14px 16px;font-size:15.5px;color:#1D1D1F;transition:border-color .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1)" style-focus="border-color:#0058CC;box-shadow:0 0 0 4px rgba(0,88,204,.12);outline:none"></textarea>
+        </div>
+        <button type="submit" style="grid-column:1/-1;background:#0058CC;color:#fff;border:none;padding:16px 34px;font-size:16px;font-weight:500;cursor:pointer;border-radius:999px;corner-shape:squircle;transition:background .3s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1)" style-hover="background:#00429B;transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,88,204,.3)">Pošlji povpraševanje</button>
+        <p style="grid-column:1/-1;font-size:13px;color:#6E6E73;text-align:center">Ob oddaji se odpre vaš e-poštni program s pripravljenim sporočilom.</p>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <p role="status" style="grid-column:1/-1;background:#E7F3EA;color:#14532D;font-size:15px;text-align:center;padding:14px 18px;border-radius:14px;corner-shape:squircle">Hvala, povpraševanje je poslano. Odgovorimo v najkrajšem možnem času.</p>
+        </sc-if>
+        <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
+          <p role="status" style="grid-column:1/-1;background:#FBEAEA;color:#7A1C1C;font-size:15px;text-align:center;padding:14px 18px;border-radius:14px;corner-shape:squircle">Pošiljanje ni uspelo. Pokličite nas na +386 40 213 620.</p>
+        </sc-if>
+      </form>
+
+      <div style="display:grid;gap:18px">
+        <div style="background:#1D1D1F;color:#fff;padding:34px;border-radius:28px;corner-shape:squircle">
+          <span style="display:block;font-size:13px;color:#9A9AA0;margin-bottom:16px">Najhitrejša pot do odgovora</span>
+          <a href="tel:+38640213620" style="color:#fff;font-size:clamp(27px,3.4vw,38px);font-weight:600;letter-spacing:-0.025em;line-height:1.1;display:block" style-hover="color:#8FB6F0">+386 40 213 620</a>
+          <a href="mailto:turnsek.franc@s5.net" style="color:#C9C9CE;font-size:16px;margin-top:10px;display:inline-block" style-hover="color:#fff">turnsek.franc@s5.net</a>
+        </div>
+
+        <div style="background:#fff;padding:34px;border-radius:28px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);display:grid;gap:16px">
+          <h2 style="font-size:19px;font-weight:600;letter-spacing:-0.02em">Vse številke</h2>
+          <div style="display:grid;gap:12px;font-size:15px">
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#6E6E73">Mobitel</span><a href="tel:+38640213620" style="font-weight:500">+386 40 213 620</a></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#6E6E73">Mobitel</span><a href="tel:+38640309929" style="font-weight:500">+386 40 309 929</a></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#6E6E73">Pisarna</span><a href="tel:+38638192741" style="font-weight:500">+386 3 819 27 41</a></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#6E6E73">Faks</span><span style="font-weight:500">+386 3 819 27 40</span></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;padding:34px;border-radius:28px;corner-shape:squircle;box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 36px rgba(0,0,0,.06);display:grid;gap:21px">
+          <div>
+            <span style="display:block;font-size:13px;color:#0058CC;font-weight:600;margin-bottom:6px">Pisarna</span>
+            <address style="font-style:normal;font-size:15px;color:#1D1D1F">Kamence 10, 3250 Rogaška Slatina</address>
+            <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kamence+10%2C+3250+Rogaška+Slatina" style="font-size:14px;margin-top:6px;display:inline-block">Odpri v zemljevidu ›</a>
+          </div>
+          <div style="border-top:1px solid #E6E6EA;padding-top:21px">
+            <span style="display:block;font-size:13px;color:#0058CC;font-weight:600;margin-bottom:6px">Parkirišče in mehanična delavnica</span>
+            <address style="font-style:normal;font-size:15px;color:#1D1D1F">Spodnja Nova vas 47, 2310 Slovenska Bistrica</address>
+            <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spodnja+Nova+vas+47%2C+2310+Slovenska+Bistrica" style="font-size:14px;margin-top:6px;display:inline-block">Odpri v zemljevidu ›</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="padding:44px 34px 34px;border-top:1px solid #E6E6EA">
+  <div style="max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:12.5px;color:#6E6E73">
+    <span>© 2026 Turnšek Transport. Vse pravice pridržane.</span>
+    <a href="index.html">Domov</a>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;formEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Obrazec&quot;}}">
+class Component extends DCLogic {
+  state = { lang: 'sl', sent: false, failed: false };
+
+  langStyle(code) {
+    const on = this.state.lang === code;
+    return 'border:none;cursor:pointer;font-size:12.5px;font-weight:600;letter-spacing:0.02em;' +
+      'padding:5px 11px;border-radius:999px;corner-shape:squircle;transition:background .25s cubic-bezier(.16,1,.3,1),color .25s cubic-bezier(.16,1,.3,1);' +
+      (on ? 'background:#fff;color:#1D1D1F;box-shadow:0 1px 2px rgba(0,0,0,.12);' : 'background:transparent;color:#6E6E73;');
+  }
+
+  setLang(code) {
+    this.setState({ lang: code });
+    if (window.TurI18n) window.TurI18n.apply(code);
+  }
+
+  componentDidMount() {
+    if (!window.TurI18n) return;
+    const saved = window.TurI18n.stored();
+    if (saved && saved !== 'sl') {
+      this.setState({ lang: saved });
+      window.TurI18n.apply(saved);
+    }
+  }
+
+  renderVals() {
+    return {
+      slStyle: this.langStyle('sl'),
+      enStyle: this.langStyle('en'),
+      deStyle: this.langStyle('de'),
+      setSl: () => this.setLang('sl'),
+      setEn: () => this.setLang('en'),
+      setDe: () => this.setLang('de'),
+      sent: this.state.sent,
+      failed: this.state.failed,
+      onSubmit: async (e) => {
+        e.preventDefault();
+        const f = e.target;
+        const g = (n) => (f.elements[n] ? f.elements[n].value : '');
+        const endpoint = this.props.formEndpoint;
+        if (endpoint) {
+          /* pravo posiljanje (npr. Formspree): nastavi prop formEndpoint */
+          const data = ['name', 'email', 'phone', 'route', 'cargo', 'message']
+            .reduce((o, k) => (o[k] = g(k), o), {});
+          this.setState({ sent: false, failed: false });
+          try {
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify(data)
+            });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            f.reset();
+            this.setState({ sent: true, failed: false });
+          } catch (err) {
+            this.setState({ sent: false, failed: true });
+          }
+          return;
+        }
+        const body = [
+          'Ime in podjetje: ' + g('name'),
+          'E-pošta: ' + g('email'),
+          'Telefon: ' + g('phone'),
+          'Relacija: ' + g('route'),
+          'Vrsta blaga: ' + g('cargo'),
+          '', 'Sporočilo:', g('message')
+        ].join('\n');
+        window.location.href = 'mailto:turnsek.franc@s5.net?subject=' +
+          encodeURIComponent('Povpraševanje za prevoz - ' + g('name')) +
+          '&body=' + encodeURIComponent(body);
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
