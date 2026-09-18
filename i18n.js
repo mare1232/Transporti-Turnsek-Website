@@ -1,8 +1,8 @@
-/* Prevodi strani. Slovenščina je izvorno besedilo v HTML, tu sta le
-   angleščina in nemščina. Ključ je natanko slovenski niz. */
+/* Page translations. Slovenian is the source text in the HTML; only
+   English and German are listed here. The key is the exact Slovenian string. */
 (function () {
   var D = {
-    /* glava in navigacija */
+    /* header and navigation */
     'Storitve': ['Services', 'Leistungen'],
     'Vozni park': ['Fleet', 'Fuhrpark'],
     'Destinacije': ['Destinations', 'Ziele'],
@@ -32,7 +32,7 @@
     'držav': ['countries', 'Länder'],
     'tovornih vozil': ['trucks', 'Lkw'],
 
-    /* moto */
+    /* motto */
     'Naš moto': ['Our motto', 'Unser Leitsatz'],
     'Pravočasnost in spoštovanje dogovorjenih rokov. Fleksibilnost v nujnih situacijah. Zanesljivost in strokovnost pri ravnanju z zahtevnim blagom.':
       ['Punctuality and respect for agreed deadlines. Flexibility in urgent situations. Reliability and expertise in handling demanding cargo.',
@@ -46,7 +46,7 @@
     'Izkušnje': ['Experience', 'Erfahrung'],
     'Več kot 30 let na evropskih cestah.': ['More than 30 years on European roads.', 'Mehr als 30 Jahre auf Europas Straßen.'],
 
-    /* storitve */
+    /* services */
     'Zgrajeno na zaupanju': ['Built on trust', 'Auf Vertrauen gebaut'],
     'Tri stvari, na katere se naročniki najpogosteje zanašajo.':
       ['Three things our clients rely on most.', 'Drei Dinge, auf die sich unsere Kunden am meisten verlassen.'],
@@ -84,7 +84,7 @@
     'fotografija: sledenje pošiljki': ['photo: shipment tracking', 'Foto: Sendungsverfolgung'],
     'fotografija: vozni park': ['photo: our fleet', 'Foto: unser Fuhrpark'],
 
-    /* vozni park */
+    /* fleet */
     'Vozni park neprestano posodabljamo, obnavljamo in širimo. Vsa vozila ustrezajo ekološkim standardom in so opremljena z nadzorom temperature.':
       ['We continuously update, renew and expand our fleet. All vehicles meet ecological standards and are equipped with temperature control.',
        'Wir modernisieren, erneuern und erweitern unseren Fuhrpark laufend. Alle Fahrzeuge erfüllen die Umweltstandards und verfügen über Temperaturkontrolle.'],
@@ -94,7 +94,7 @@
     'Nadzor temperature': ['Temperature control', 'Temperaturkontrolle'],
     'Ekološki standardi': ['Ecological standards', 'Umweltstandards'],
 
-    /* destinacije */
+    /* destinations */
     'Kam vozimo': ['Where we drive', 'Wohin wir fahren'],
     'Prevoze opravljamo znotraj Evropske unije, v državah bivše Jugoslavije ter v ostalih evropskih in nekaterih azijskih državah. Zaupa nam več kot 150 strank iz 26 držav.':
       ['We carry out transports within the European Union, in the countries of the former Yugoslavia and in other European and some Asian countries. More than 150 clients from 26 countries trust us.',
@@ -110,7 +110,7 @@
     'Rusija, Ukrajina, Gruzija, Armenija, Kazahstan, Kirgizistan':
       ['Russia, Ukraine, Georgia, Armenia, Kazakhstan, Kyrgyzstan', 'Russland, Ukraine, Georgien, Armenien, Kasachstan, Kirgisistan'],
 
-    /* države (karta) */
+    /* countries (map) */
     'Slovenija': ['Slovenia', 'Slowenien'],
     'Italija': ['Italy', 'Italien'],
     'Avstrija': ['Austria', 'Österreich'],
@@ -141,7 +141,7 @@
     'Kazahstan': ['Kazakhstan', 'Kasachstan'],
     'Kirgizistan': ['Kyrgyzstan', 'Kirgisistan'],
 
-    /* o podjetju */
+    /* about the company */
     'Kako smo začeli': ['How we started', 'Wie wir angefangen haben'],
     'Od enega kamiona do prevozov po vsej Evropi.': ['From one truck to transports across Europe.', 'Von einem Lkw zu Transporten in ganz Europa.'],
     'En kamion, ena vožnja v Rusijo': ['One truck, one drive to Russia', 'Ein Lkw, eine Fahrt nach Russland'],
@@ -159,7 +159,7 @@
       ['Twelve vehicles, regular routes across Europe and Asia, and long-standing partners who keep coming back.',
        'Zwölf Fahrzeuge, regelmäßige Strecken durch Europa und Asien und langjährige Partner, die wiederkommen.'],
 
-    /* lokacije */
+    /* locations */
     'Kje nas najdete': ['Where to find us', 'Wo Sie uns finden'],
     'Pisarna v Rogaški Slatini, parkirišče in mehanična delavnica v Slovenski Bistrici.':
       ['Office in Rogaška Slatina, parking and mechanical workshop in Slovenska Bistrica.',
@@ -176,14 +176,14 @@
     'Spodnja Nova vas 47, 2310 Slovenska Bistrica, Slovenija (EU)': ['Spodnja Nova vas 47, 2310 Slovenska Bistrica, Slovenia (EU)', 'Spodnja Nova vas 47, 2310 Slovenska Bistrica, Slowenien (EU)'],
     'Odpri v zemljevidu': ['Open in maps', 'In Karten öffnen'],
 
-    /* CTA in noga */
+    /* CTA and footer */
     'Potrebujete ponudbo za prevoz?': ['Need a transport quote?', 'Brauchen Sie ein Transportangebot?'],
     'Pošljite relacijo in vrsto blaga ali nas preprosto pokličite - odgovorimo hitro.':
       ['Send us the route and type of cargo, or simply call - we reply quickly.',
        'Senden Sie uns Strecke und Ladungsart oder rufen Sie einfach an - wir antworten schnell.'],
     '© 2026 Turnšek Transport. Vse pravice pridržane.': ['© 2026 Turnšek Transport. All rights reserved.', '© 2026 Turnšek Transport. Alle Rechte vorbehalten.'],
 
-    /* kontaktna stran */
+    /* contact page */
     'Povejte nam, kaj vozimo.': ['Tell us what we are hauling.', 'Sagen Sie uns, was wir transportieren.'],
     'Opišite relacijo in vrsto blaga. Odgovorimo z okvirno ponudbo, po potrebi pa vas pokličemo nazaj.':
       ['Describe the route and the type of cargo. We reply with an indicative quote and call you back if needed.',
@@ -221,7 +221,7 @@
   var ATTRS = ['placeholder', 'aria-label', 'alt', 'title'];
   var current = 'sl';
 
-  /* obratni slovar: kateri koli jezik -> slovenscina */
+  /* reverse dictionary: any language -> Slovenian */
   var REV = {};
   Object.keys(D).forEach(function (sl) {
     D[sl].forEach(function (v) { if (v && !REV[v]) REV[v] = sl; });

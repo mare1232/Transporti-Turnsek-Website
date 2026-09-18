@@ -33,7 +33,7 @@
 <header style="position:sticky;top:0;z-index:60;background:rgba(251,251,253,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)">
   <div style="max-width:1180px;margin:0 auto;padding:14px 34px;display:flex;align-items:center;gap:24px">
     <a href="index.html" aria-label="Turnšek Transport - domov" style="display:flex;align-items:center;flex:none">
-      <!-- LOGOTIP (glava): zamenljiva datoteka assets/logo-glava.png -->
+      <!-- LOGO (header): replaceable file assets/logo-glava.png -->
       <img src="assets/logo-glava.png" alt="transporti TURNŠEK" style="height:32px;width:auto">
     </a>
     <div style="flex:1"></div>
@@ -175,7 +175,7 @@ class Component extends DCLogic {
         const g = (n) => (f.elements[n] ? f.elements[n].value : '');
         const endpoint = this.props.formEndpoint;
         if (endpoint) {
-          /* pravo posiljanje (npr. Formspree): nastavi prop formEndpoint */
+          /* real submission (e.g. Formspree): set the formEndpoint prop */
           const data = ['name', 'email', 'phone', 'route', 'cargo', 'message']
             .reduce((o, k) => (o[k] = g(k), o), {});
           this.setState({ sent: false, failed: false });
