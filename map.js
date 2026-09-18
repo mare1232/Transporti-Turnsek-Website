@@ -1,6 +1,6 @@
-/* <tur-map> — ravna karta Evrope in Azije s potmi do destinacij.
-   Kopno se nalozi leno iz javnih zemljevidnih podatkov; brez njih ostane
-   preprosta mreza. Atributi: accent, animate ("0" izklopi risanje poti). */
+/* <tur-map> — flat map of Europe and Asia with routes to destinations.
+   Land is lazy-loaded from public map data; without it a simple grid
+   remains. Attributes: accent, animate ("0" disables route drawing). */
 (function () {
   var ORIGIN = { n: 'Rogaška Slatina', lat: 46.24, lon: 15.64 };
   var DEST = [
@@ -106,9 +106,9 @@
       this._dots();
 
       var self = this;
-      /* kopno je glavni vizual, zato ga nalozimo takoj in s ponovnimi poskusi */
+      /* land is the main visual, so load it immediately and retry on failure */
       this._loadLand();
-      /* animacija poti se zazene, ko karta pride v vidno polje */
+      /* path animation starts once the map enters the viewport */
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (e) {
           if (!e[0].isIntersecting) return;
@@ -185,7 +185,7 @@
       this._dotG.appendChild(home);
     }
 
-    /* pike se ob prvem prikazu nezno prikazejo */
+    /* dots gently fade in on first display */
     _draw() {
       if (this._drawn) return;
       this._drawn = true;
@@ -219,7 +219,7 @@
     }
 
     async _land() {
-      /* najprej vgrajena geometrija (deluje brez omrezja) */
+      /* built-in geometry first (works offline) */
       if (Array.isArray(window.TUR_LAND) && window.TUR_LAND.length) {
         this._paint(window.TUR_LAND);
         return;

@@ -1,16 +1,21 @@
 # Turnšek Transport
 
-Spletna stran podjetja Turnšek Transport.
+Company website for Turnšek Transport. The site content is in Slovenian (with English/German translations via `i18n.js`).
 
-## Objava na GitHub Pages
+## Publishing on GitHub Pages
 
-1. Naloži vse datoteke iz te mape v korenski del repozitorija.
-2. Settings → Pages → Source: Deploy from a branch, branch `main`, mapa `/ (root)`.
-3. Stran bo dosegljiva na `https://<uporabnik>.github.io/<repozitorij>/`.
+1. Upload all files from this folder to the root of the repository.
+2. Settings → Pages → Source: Deploy from a branch, branch `main`, folder `/ (root)`.
+3. The site will be available at `https://<user>.github.io/<repository>/`.
 
-## Datoteke
+## Branching
 
-- `index.html` – glavna stran
-- `kontakt.html` – kontakt in povpraševanje
-- `support.js`, `map.js`, `land-data.js`, `i18n.js` – skripte (karta, jeziki)
-- `assets/logo-glava.png`, `assets/logo-noga.png` – logotip (zamenljiv)
+- `main` — production branch, protected, deployed to GitHub Pages.
+- `develop` — integration branch for ongoing work; open a pull request into `main` to release.
+
+## Files
+
+- `index.html` – main page
+- `kontakt.html` – contact / inquiry page
+- `support.js`, `map.js`, `land-data.js`, `i18n.js` – scripts (map, translations)
+- `assets/logo-glava.png`, `assets/logo-noga.png` – logo (replaceable)
